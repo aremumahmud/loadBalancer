@@ -23,14 +23,23 @@ require('http').createServer(function(req, res) {
    var list = query.split("=")
    servers.push(list[1])
      var text = servers.join("\n")
-     var dataStream = new DataStream(text)
-     res.end("sucess" +text)
-var writer = fs.createWriteStream("servers.file")
-     dataStream
-        .pipe(writer)
-        .on("end" ,()=>{
-          res.end("sucess" +text)
-        })
+     fs.writeFile("servers.file",text, (err) => { 
+
+       if (err) {
+
+           res.end("error")
+
+       }else { 
+           res.send(text)
+
+        // console.log("File written successfully\n"); 
+
+         //console.log("The written has the following contents:"); 
+
+         //console.log(fs.readFileSync("books.txt", "utf8")); 
+
+        } 
+     }); 
  }
 }).listen(process.env.PORT || 8080, function() {console.log('Started');});
 //lets see
