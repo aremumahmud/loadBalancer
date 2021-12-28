@@ -30,7 +30,7 @@ require('http').createServer(function(req, res) {
            res.end("error")
 
        }else { 
-           res.send(text)
+           res.end(text)
 
         // console.log("File written successfully\n"); 
 
