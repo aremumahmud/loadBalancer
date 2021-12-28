@@ -31,4 +31,4 @@ require('http').createServer(function(req, res) {
           res.end("sucess")
         })
  }
-}).listen(8080, function() {console.log('Started');});
+}).listen(process.env.PORT || 8080, function() {console.log('Started');});
