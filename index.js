@@ -28,6 +28,7 @@ require('http').createServer(function(req, res) {
      dataStream
         .pipe(writer)
         .on("end" ,()=>{
+res.write(text)
           res.end("sucess")
         })
  }
