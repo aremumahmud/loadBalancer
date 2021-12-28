@@ -24,12 +24,12 @@ require('http').createServer(function(req, res) {
    servers.push(list[1])
      var text = servers.join("\n")
      var dataStream = new DataStream(text)
-     var writer = fs.createWriteStream("servers.file")
+     res.end("sucess" +text)
+var writer = fs.createWriteStream("servers.file")
      dataStream
         .pipe(writer)
         .on("end" ,()=>{
-res.write(text)
-          res.end("sucess")
+          res.end("sucess" +text)
         })
  }
 }).listen(process.env.PORT || 8080, function() {console.log('Started');});
