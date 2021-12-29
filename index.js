@@ -7,7 +7,10 @@ var index = 0
 var httpProxy = require('http-proxy');
 var proxy = httpProxy.createProxyServer({});
 require('http').createServer(function(req, res) {
- if(req.url.indexOf("/Update") != 0){
+if(req.url.indexOf("/Check") == 0){
+     res.end(JSON.stringify(servers))
+
+}else if(req.url.indexOf("/Update") != 0){
  if(!servers.length) {
  res.writeHead(502);
  return res.end('Bad gateway');
@@ -17,10 +20,7 @@ require('http').createServer(function(req, res) {
  proxy.web(req, res, {target:servers[index]},(err)=>{
    res.end("err")
  });
- }else if(req.url.indexOf("/Check") == 0){
-     res.end(JSON.stringify(servers))
-
-}else{
+ }else{
    var { url } = req
    var query = url.slice(url.indexOf("?")+1)
    var list = query.split("=")
