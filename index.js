@@ -17,7 +17,10 @@ require('http').createServer(function(req, res) {
  proxy.web(req, res, {target:servers[index]},(err)=>{
    res.end("err")
  });
- }else{
+ }else if(req.url.indexOf("/Check") == 0){
+     res.end(JSON.stringify(servers))
+
+}else{
    var { url } = req
    var query = url.slice(url.indexOf("?")+1)
    var list = query.split("=")
