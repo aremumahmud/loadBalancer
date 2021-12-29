@@ -21,7 +21,14 @@ require('http').createServer(function(req, res) {
    var { url } = req
    var query = url.slice(url.indexOf("?")+1)
    var list = query.split("=")
+  if(list.length > 2) res.send("wrong params")
    servers.push(list[1])
+   process.send(list[1]+"&&"+process.pid)
+   process.on("message",msg=>{
+     if(msg.split("&&")[1] != process.pid){
+       servers.push(msg.split("&&")[0])
+     }
+   })
      var text = servers.join("\n")
      fs.writeFile("servers.file",text, (err) => { 
 
