@@ -17,10 +17,17 @@ cluster.on('exit', function(worker, code) {
 });
 var http = require("http")
 http.createServer((req,res)=>{
-Object.keys(cluster.workers).forEach(function(id) {
- cluster.workers[id].send('Hello from the master');
- res.end("sent")
-});
+   var { url } = req
+   var query = url.slice(url.indexOf("?")+1)
+   var list = query.split("=")
+   if (list.length <= 2){
+       Object.keys(cluster.workers).forEach(function(id) {
+            cluster.workers[id].send(list[1]);
+       });
+       res.end("sent")
+   }else{
+       res.end("wrong params")
+   }
 
   }).listen(process.env.PORT || 8080)
 
