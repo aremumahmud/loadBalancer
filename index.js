@@ -27,11 +27,6 @@ if(req.url.indexOf("/Check") == 0){
   if(list.length > 2) res.send("wrong params")
    servers.push(list[1])
    process.send(list[1]+"&&"+process.pid)
-   process.on("message",msg=>{
-     if(msg.split("&&")[1] != process.pid){
-       servers.push(msg.split("&&")[0])
-     }
-   })
      var text = servers.join("\n")
      fs.writeFile("servers.file",text, (err) => { 
 
@@ -52,4 +47,9 @@ if(req.url.indexOf("/Check") == 0){
      }); 
  }
 }).listen(process.env.PORT || 8080, function() {console.log('Started');});
+process.on("message",msg=>{
+     if(msg.split("&&")[1] != process.pid){
+       servers.push(msg.split("&&")[0])
+     }
+   })
 //lets see
