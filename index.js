@@ -20,9 +20,13 @@ if(req.url == "/favicon.ico"){
  return res.end('Bad gateway');
  }
  index = (index + 1) % servers.length;
- console.log(servers[index])//[4]
-req.headers.host = "mongodbservice1.herokuapp.com"
- proxy.web(req, res, {target:"http://mongodbservice1.herokuapp.com"},(err)=>{
+ var serv = servers[index]
+if (serv == " ") {
+ index = (index + 1) % servers.length;
+srv = servers[index]
+}
+req.headers.host = srv
+ proxy.web(req, res, {target:"http://"+srv},(err)=>{
    res.end("err")
 console.log(err)
  });
