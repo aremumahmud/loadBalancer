@@ -24,6 +24,7 @@ if(req.url == "/favicon.ico"){
 req.headers.host = "mongodbservice1.herokuapp.com"
  proxy.web(req, res, {target:"mongodbservice1.herokuapp.com"},(err)=>{
    res.end("err")
+console.log(err)
  });
  }else{
    var { url } = req
