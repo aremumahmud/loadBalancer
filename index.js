@@ -5,6 +5,7 @@ var servers = fs.readFileSync("./servers.file").toString().split("\n")
 servers.pop()
 console.log(servers)
 var index = 0
+
 var httpProxy = require('http-proxy');
 var proxy = httpProxy.createProxyServer({});
 require('http').createServer(function(req, res) {
