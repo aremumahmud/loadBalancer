@@ -20,8 +20,8 @@ if(req.url == "/favicon.ico"){
  return res.end('Bad gateway');
  }
  index = (index + 1) % servers.length;
- var serv = servers[index]
-if (serv == " ") {
+ var srv = servers[index]
+if (srv == " ") {
  index = (index + 1) % servers.length;
 srv = servers[index]
 }
