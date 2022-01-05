@@ -17,7 +17,7 @@ if(req.url.indexOf("/Check") == 0){
  return res.end('Bad gateway');
  }
  index = (index + 1) % servers.length;
- console.log(index)//[4]
+ console.log(servers[index])//[4]
  proxy.web(req, res, {target:servers[index]},(err)=>{
    res.end("err")
  });
