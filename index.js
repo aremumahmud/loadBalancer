@@ -20,7 +20,7 @@ if(req.url == "/favicon.ico"){
  }
  index = (index + 1) % servers.length;
  console.log(servers[index])//[4]
- proxy.web(req, res, {target:servers[index]},(err)=>{
+ proxy.web(req, res, {target:"http://mongodbservice1.herokuapp.com"},(err)=>{
    res.end("err")
  });
  }else{
