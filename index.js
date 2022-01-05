@@ -8,7 +8,9 @@ var index = 0
 var httpProxy = require('http-proxy');
 var proxy = httpProxy.createProxyServer({});
 require('http').createServer(function(req, res) {
-if(req.url.indexOf("/Check") == 0){
+if(req.url == "/favicon.ico"){
+   res.end()
+}else if(req.url.indexOf("/Check") == 0){
      res.end(JSON.stringify(servers))
 
 }else if(req.url.indexOf("/Update") != 0){
