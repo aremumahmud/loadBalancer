@@ -2,6 +2,7 @@ var http = require('http');
 var DataStream = require("./DataStream")
 var fs = require("fs")
 var servers = fs.readFileSync("./servers.file").toString().split("\n")
+servers.pop()
 console.log(servers)
 var index = 0
 var httpProxy = require('http-proxy');
