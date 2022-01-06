@@ -3,6 +3,7 @@ var DataStream = require("./DataStream")
 var fs = require("fs")
 var servers = fs.readFileSync("./servers.file").toString().split("\n")
 servers.pop()
+servers.shift()
 console.log(servers)
 var index = 0
 
@@ -21,10 +22,7 @@ if(req.url == "/favicon.ico"){
  }
  index = (index + 1) % servers.length;
  var srv = servers[index]
-if (srv == " ") {
- index = (index + 1) % servers.length;
-srv = servers[index]
-}
+console.log(srv)
 req.headers.host = srv
  proxy.web(req, res, {target:"http://"+srv},(err)=>{
    res.end("err")
